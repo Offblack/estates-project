@@ -4,6 +4,8 @@ import GlobalStyles from 'src/theme/GlobalStyles';
 import Form from 'src/components/Form';
 import EstatesList from 'src/components/EstatesList';
 import MainTemplate from 'src/templates/MainTemplate';
+import store from 'src/store';
+import { Provider } from 'react-redux';
 
 /* To do! 
 
@@ -14,12 +16,14 @@ import MainTemplate from 'src/templates/MainTemplate';
 */
 
 const IndexPage = () => (
-  <MainTemplate>
-    <GlobalStyles />
-    <Helmet title="Estates" defer={false} />
-    <Form />
-    <EstatesList />
-  </MainTemplate>
+  <Provider store={store}>
+    <MainTemplate>
+      <GlobalStyles />
+      <Helmet title="Estates" defer={false} />
+      <Form />
+      <EstatesList />
+    </MainTemplate>
+  </Provider>
 );
 
 export default IndexPage;

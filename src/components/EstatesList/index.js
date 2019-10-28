@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import EstateItem from 'src/components/EstateItem';
+import { connect } from 'react-redux';
+import { getItems as getItemsAction } from 'src/actions';
 
 const StyledList = styled.ul`
   max-width: 1000px;
@@ -10,74 +13,76 @@ const StyledList = styled.ul`
   list-style-type: none;
 `;
 
-let dummyEstates = [
+let dummy = [
   {
-    id: 1,
     city: 'Kraków',
-    street: 'Ludwinowska',
+    street: 'Półkole',
     property: '7',
-    apartment: '17',
-    price: 19000,
+    apartment: '18',
+    price: 16000,
     type: 1,
-    description: 'Siedziba firmy',
-  },
-  {
-    id: 2,
-    city: 'Kraków',
-    street: 'Ludwinowska',
-    property: '7',
-    apartment: '17',
-    price: 19000,
-    type: 1,
-    description: 'Siedziba firmy',
-  },
-  {
-    id: 3,
-    city: 'Kraków',
-    street: 'Ludwinowska',
-    property: '7',
-    apartment: '17',
-    price: 19000,
-    type: 1,
-    description: 'Siedziba firmy',
-  },
-  {
-    id: 4,
-    city: 'Kraków',
-    street: 'Ludwinowska',
-    property: '7',
-    apartment: '17',
-    price: 19000,
-    type: 1,
-    description: 'Siedziba firmy',
-  },
-  {
-    id: 5,
-    city: 'Kraków',
-    street: 'Ludwinowska',
-    property: '7',
-    apartment: '17',
-    price: 19000,
-    type: 1,
-    description: 'Siedziba firmy',
+    description: 'Adres na ulicy',
   },
 ];
 
-const EstatesList = () => (
-  <StyledList>
-    {dummyEstates.map(estate => (
-      <EstateItem
-        id={estate.id}
-        city={estate.city}
-        street={estate.street}
-        property={estate.property}
-        apartment={estate.apartment}
-        price={estate.price}
-        type={estate.type}
-        description={estate.description}
-      />
-    ))}
-  </StyledList>
-);
+class EstatesList extends Component {
+  componentDidMount() {
+    this.props.getItems();
+  }
 
-export default EstatesList;
+  render() {
+    const { data } = this.props;
+
+    return (
+      <StyledList>
+        {data.map(estate => (
+          <EstateItem
+            id={estate.id}
+            city={estate.city}
+            street={estate.street}
+            property={estate.property}
+            apartment={estate.apartment}
+            price={estate.price}
+            type={estate.type}
+            description={estate.description}
+            key={estate.id}
+          />
+        ))}
+        {console.log(data)}
+      </StyledList>
+    );
+  }
+}
+
+EstatesList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      street: PropTypes.string.isRequired,
+      property: PropTypes.string.isRequired,
+      apartment: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+EstatesList.defaultProps = {
+  data: [],
+};
+
+const mapStateToProps = state => {
+  const { data } = state;
+  return { data };
+};
+
+const mapDispatchToProps = dispatch => ({
+  getItems: () => dispatch(getItemsAction()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EstatesList);

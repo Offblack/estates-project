@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandHoldingUsd, faList } from '@fortawesome/free-solid-svg-icons';
 import Button from 'src/components/Button';
+import { connect } from 'react-redux';
+import { removeItem as removeItemAction } from 'src/actions';
 
 const StyledItem = styled.li`
   max-width: 500px;
@@ -60,7 +62,17 @@ const StyledDescription = styled.div`
   margin: 30px 0;
 `;
 
-const EstateItem = ({ id, city, street, property, apartment, price, type, description }) => (
+const EstateItem = ({
+  id,
+  city,
+  street,
+  property,
+  apartment,
+  price,
+  type,
+  description,
+  removeItem,
+}) => (
   <StyledItem id={id}>
     <StyledWrapper>
       <div>
@@ -83,10 +95,17 @@ const EstateItem = ({ id, city, street, property, apartment, price, type, descri
     </StyledWrapper>
     <StyledDescription>{description}</StyledDescription>
     <StyledWrapper secondary>
-      <Button>Usuń</Button>
+      <Button onClick={() => removeItem(id)}>Usuń</Button>
       <Button>Edytuj</Button>
     </StyledWrapper>
   </StyledItem>
 );
 
-export default EstateItem;
+const mapDispatchToProps = dispatch => ({
+  removeItem: id => dispatch(removeItemAction(id)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(EstateItem);
