@@ -15,6 +15,11 @@ const Button = styled.button`
   border: none;
   outline: 0;
   cursor: pointer;
+  transition: background 0.4s ease-in-out;
+
+  :hover {
+    background-color: #11b15c;
+  }
 
   ${props =>
     props.secondary &&

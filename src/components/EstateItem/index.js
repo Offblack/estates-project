@@ -6,6 +6,7 @@ import Button from 'src/components/Button';
 
 const StyledItem = styled.li`
   max-width: 500px;
+  box-sizing: border-box;
   padding: 25px 40px;
   margin: 0 20px 40px;
   display: flex;
@@ -59,39 +60,28 @@ const StyledDescription = styled.div`
   margin: 30px 0;
 `;
 
-let dummyEstate = {
-  id: 1,
-  city: 'Kraków',
-  street: 'Ludwinowska',
-  property: '7',
-  apartment: '17',
-  price: 19000,
-  type: 1,
-  description: 'Siedziba firmy',
-};
-
-const EstateItem = () => (
-  <StyledItem>
+const EstateItem = ({ id, city, street, property, apartment, price, type, description }) => (
+  <StyledItem id={id}>
     <StyledWrapper>
       <div>
-        <StyledTitle>{dummyEstate.city}</StyledTitle>
+        <StyledTitle>{city}</StyledTitle>
         <StyledSubtitle>
-          {dummyEstate.street}
-          {` ${dummyEstate.property}`}/{dummyEstate.apartment}
+          {street}
+          {` ${property}`}/{apartment}
         </StyledSubtitle>
       </div>
       <div>
         <StyledIcons>
           <StyledFontAwesomeIcon icon={faHandHoldingUsd} />
-          {`${dummyEstate.price}`}
+          {`${price}`}
         </StyledIcons>
         <StyledIcons>
           <StyledFontAwesomeIcon icon={faList} />
-          {`${dummyEstate.type}`}
+          {`${type}`}
         </StyledIcons>
       </div>
     </StyledWrapper>
-    <StyledDescription>{dummyEstate.description}</StyledDescription>
+    <StyledDescription>{description}</StyledDescription>
     <StyledWrapper secondary>
       <Button>Usuń</Button>
       <Button>Edytuj</Button>
