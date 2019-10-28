@@ -8,6 +8,7 @@ import {
 const initialState = {};
 
 const rootReducer = (state = initialState, action) => {
+  const { data } = state;
   switch (action.type) {
     case GET_ITEMS_SUCCESS:
       return {
@@ -16,16 +17,14 @@ const rootReducer = (state = initialState, action) => {
     case EDIT_ITEM_SUCCESS:
       return {
         ...state,
-        ...action.payload.data,
+        data: { ...action.payload.data },
       };
     case ADD_ITEM_SUCCESS:
       return {
         ...state,
-        ...action.payload.data,
+        data: [...data, action.payload],
       };
     case REMOVE_ITEM_SUCCESS:
-      const { data } = state;
-      console.log(data);
       return {
         ...state,
         data: data.filter(item => item.id !== action.payload.id),

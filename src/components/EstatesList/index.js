@@ -13,18 +13,6 @@ const StyledList = styled.ul`
   list-style-type: none;
 `;
 
-let dummy = [
-  {
-    city: 'Kraków',
-    street: 'Półkole',
-    property: '7',
-    apartment: '18',
-    price: 16000,
-    type: 1,
-    description: 'Adres na ulicy',
-  },
-];
-
 class EstatesList extends Component {
   componentDidMount() {
     this.props.getItems();
@@ -48,7 +36,6 @@ class EstatesList extends Component {
             key={estate.id}
           />
         ))}
-        {console.log(data)}
       </StyledList>
     );
   }
@@ -59,12 +46,12 @@ EstatesList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       city: PropTypes.string.isRequired,
-      street: PropTypes.string.isRequired,
-      property: PropTypes.string.isRequired,
-      apartment: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      street: PropTypes.isRequired,
+      property: PropTypes.isRequired,
+      apartment: PropTypes.isRequired,
+      price: PropTypes.isRequired,
+      type: PropTypes.isRequired,
+      description: PropTypes.isRequired,
     }),
   ),
 };

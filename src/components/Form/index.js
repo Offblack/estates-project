@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { addItem as addItemAction } from 'src/actions';
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -29,7 +31,7 @@ const StyledTextArea = styled.textarea`
   height: 100px;
 `;
 
-const Form = () => (
+const Form = ({ addItem }) => (
   <StyledWrapper>
     <StyledHeader>Oferty nieruchomości</StyledHeader>
     <Formik
@@ -43,7 +45,7 @@ const Form = () => (
         description: '',
       }}
       onSubmit={(values, actions) => {
-        console.log(values);
+        addItem(values);
         actions.setSubmitting(false);
         actions.resetForm();
       }}
@@ -126,4 +128,11 @@ const Form = () => (
   </StyledWrapper>
 );
 
-export default Form;
+const mapDispatchToProps = dispatch => ({
+  addItem: values => dispatch(addItemAction(values)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Form);

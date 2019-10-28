@@ -46,7 +46,8 @@ export const addItem = itemContent => dispatch => {
       dispatch({
         type: ADD_ITEM_SUCCESS,
         payload: {
-          data,
+          id: { ...data.data },
+          ...itemContent,
         },
       });
     })
