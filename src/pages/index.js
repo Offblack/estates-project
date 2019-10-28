@@ -1,8 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import GlobalStyles from 'src/theme/GlobalStyles';
-import Button from 'src/components/Button';
-import Input from 'src/components/Input';
+import Form from 'src/components/Form';
 
 /* To do! 
 
@@ -16,8 +15,7 @@ const IndexPage = () => (
     <GlobalStyles />
     <Helmet title="Estates" defer={false} />
     <h1>Oferty Nieruchomości</h1>
-    <Button>Sprawdź</Button>
-    <Input name="city" label="City"></Input>
+    <Form />
     <p>Now go build something great.</p>
   </>
 );

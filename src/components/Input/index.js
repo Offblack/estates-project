@@ -1,10 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledWrapper = styled.div`
-  width: 100%;
+  width: 90%;
   margin: 24px 0;
   position: relative;
+  ${props =>
+    props.short &&
+    css`
+      width: 40%;
+    `}
 `;
 
 const StyledBar = styled.div`
@@ -51,10 +56,10 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = ({ name, label, ...props }) => (
-  <StyledWrapper>
-    <StyledInput type="text" name={name} id={name} required placeholder=" " {...props} />
-    <StyledLabel>{label}</StyledLabel>
+const Input = ({ type, name, label, short, ...props }) => (
+  <StyledWrapper short={short}>
+    <StyledInput type={type} name={name} id={name} required placeholder=" " {...props} />
+    <StyledLabel htmlFor={name}>{label}</StyledLabel>
     <StyledBar />
   </StyledWrapper>
 );
