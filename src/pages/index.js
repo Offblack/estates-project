@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import GlobalStyles from 'src/theme/GlobalStyles';
-import Form from 'src/components/Form';
+import AddForm from 'src/components/AddForm';
 import EstatesList from 'src/components/EstatesList';
 import MainTemplate from 'src/templates/MainTemplate';
 import store from 'src/store';
@@ -20,7 +20,7 @@ const IndexPage = () => (
     <MainTemplate>
       <GlobalStyles />
       <Helmet title="Estates" defer={false} />
-      <Form />
+      <AddForm />
       <EstatesList />
     </MainTemplate>
   </Provider>

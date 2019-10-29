@@ -44,8 +44,8 @@ class EstatesList extends Component {
 EstatesList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
+      id: PropTypes.isRequired,
+      city: PropTypes.isRequired,
       street: PropTypes.isRequired,
       property: PropTypes.isRequired,
       apartment: PropTypes.isRequired,

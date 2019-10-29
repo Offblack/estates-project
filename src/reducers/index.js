@@ -17,7 +17,9 @@ const rootReducer = (state = initialState, action) => {
     case EDIT_ITEM_SUCCESS:
       return {
         ...state,
-        data: { ...action.payload.data },
+        data: data.map(item =>
+          item.id === action.payload.id ? { ...action.payload } : { ...item },
+        ),
       };
     case ADD_ITEM_SUCCESS:
       return {

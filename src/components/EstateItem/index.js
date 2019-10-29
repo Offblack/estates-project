@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandHoldingUsd, faList } from '@fortawesome/free-solid-svg-icons';
 import Button from 'src/components/Button';
 import { connect } from 'react-redux';
 import { removeItem as removeItemAction } from 'src/actions';
+import EstateContext from 'src/context';
+import EditForm from 'src/components/EditForm';
 
 const StyledItem = styled.li`
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      top: 35px;
+    }
+    100% {
+      opacity: 1;
+      top: 0;
+    }
+  }
+
   max-width: 500px;
   box-sizing: border-box;
   padding: 25px 40px;
   margin: 0 20px 40px;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 35px -10px rgba(0, 0, 0, 0.3);
+  animation: appear 0.5s ease;
 `;
 
 const StyledWrapper = styled.div`
@@ -62,44 +77,89 @@ const StyledDescription = styled.div`
   margin: 30px 0;
 `;
 
-const EstateItem = ({
-  id,
-  city,
-  street,
-  property,
-  apartment,
-  price,
-  type,
-  description,
-  removeItem,
-}) => (
-  <StyledItem id={id}>
-    <StyledWrapper>
-      <div>
-        <StyledTitle>{city}</StyledTitle>
-        <StyledSubtitle>
-          {street}
-          {` ${property}`}/{apartment}
-        </StyledSubtitle>
-      </div>
-      <div>
-        <StyledIcons>
-          <StyledFontAwesomeIcon icon={faHandHoldingUsd} />
-          {`${price}`}
-        </StyledIcons>
-        <StyledIcons>
-          <StyledFontAwesomeIcon icon={faList} />
-          {`${type}`}
-        </StyledIcons>
-      </div>
-    </StyledWrapper>
-    <StyledDescription>{description}</StyledDescription>
-    <StyledWrapper secondary>
-      <Button onClick={() => removeItem(id)}>Usuń</Button>
-      <Button>Edytuj</Button>
-    </StyledWrapper>
-  </StyledItem>
-);
+class EstateItem extends Component {
+  state = {
+    id: '',
+    city: '',
+    street: '',
+    property: '',
+    apartment: '',
+    price: 0,
+    type: 0,
+    description: '',
+    editActive: false,
+  };
+
+  handleEdit = (id, city, street, property, apartment, price, type, description) => {
+    this.setState({
+      id,
+      city,
+      street,
+      property,
+      apartment,
+      price,
+      type,
+      description,
+      editActive: true,
+    });
+  };
+
+  render() {
+    const {
+      id,
+      city,
+      street,
+      property,
+      apartment,
+      price,
+      type,
+      description,
+      removeItem,
+    } = this.props;
+
+    const contextElements = {
+      ...this.state,
+    };
+
+    return (
+      <EstateContext.Provider value={contextElements}>
+        <StyledItem id={id}>
+          <StyledWrapper>
+            <div>
+              <StyledTitle>{city}</StyledTitle>
+              <StyledSubtitle>
+                {street}
+                {` ${property}`}/{apartment}
+              </StyledSubtitle>
+            </div>
+            <div>
+              <StyledIcons>
+                <StyledFontAwesomeIcon icon={faHandHoldingUsd} />
+                {`${price}`}
+              </StyledIcons>
+              <StyledIcons>
+                <StyledFontAwesomeIcon icon={faList} />
+                {`${type}`}
+              </StyledIcons>
+            </div>
+          </StyledWrapper>
+          <StyledDescription>{description}</StyledDescription>
+          <StyledWrapper secondary>
+            <Button onClick={() => removeItem(id)}>Usuń</Button>
+            <Button
+              onClick={() =>
+                this.handleEdit(id, city, street, property, apartment, price, type, description)
+              }
+            >
+              Edytuj
+            </Button>
+          </StyledWrapper>
+        </StyledItem>
+        {this.state.editActive && <EditForm />}
+      </EstateContext.Provider>
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   removeItem: id => dispatch(removeItemAction(id)),

@@ -6,12 +6,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'src/actions';
 
-const StyledWrapper = styled.div`
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 180px;
-`;
+const StyledWrapper = styled.div``;
 
 const StyledForm = styled.form`
   padding: 0;
@@ -31,9 +26,9 @@ const StyledTextArea = styled.textarea`
   height: 100px;
 `;
 
-const Form = ({ addItem }) => (
+const AddForm = ({ addItem }) => (
   <StyledWrapper>
-    <StyledHeader>Oferty nieruchomości</StyledHeader>
+    <StyledHeader>Dodaj ofertę</StyledHeader>
     <Formik
       initialValues={{
         city: '',
@@ -135,4 +130,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(Form);
+)(AddForm);

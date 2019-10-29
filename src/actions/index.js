@@ -57,19 +57,19 @@ export const addItem = itemContent => dispatch => {
     });
 };
 
-export const editItem = (itemContent, id) => dispatch => {
+export const editItem = itemContent => dispatch => {
   dispatch({ type: EDIT_ITEM_REQUEST });
 
   return axios
     .post('https://alfa.propertygrouppoland.pl/q/michalopalka/update', {
       ...itemContent,
-      id,
     })
     .then(({ data }) => {
+      console.log(data);
       dispatch({
         type: EDIT_ITEM_SUCCESS,
         payload: {
-          data,
+          ...itemContent,
         },
       });
     })
