@@ -10,14 +10,14 @@ const StyledWrapper = styled.div``;
 
 const StyledForm = styled.form`
   padding: 0;
-  margin: 0;
+  margin: 0 0 60px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   max-width: 500px;
 `;
 
-const StyledHeader = styled.h1`
+const StyledHeader = styled.h2`
   margin-left: 20px;
 `;
 

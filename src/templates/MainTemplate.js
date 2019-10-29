@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  padding: 50px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  margin: 50px;
 `;
 
 const MainTemplate = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;

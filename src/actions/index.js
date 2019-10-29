@@ -64,8 +64,7 @@ export const editItem = itemContent => dispatch => {
     .post('https://alfa.propertygrouppoland.pl/q/michalopalka/update', {
       ...itemContent,
     })
-    .then(({ data }) => {
-      console.log(data);
+    .then(() => {
       dispatch({
         type: EDIT_ITEM_SUCCESS,
         payload: {

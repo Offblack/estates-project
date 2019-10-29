@@ -19,11 +19,10 @@ const StyledItem = styled.li`
       top: 0;
     }
   }
-
-  max-width: 500px;
+  width: 420px;
   box-sizing: border-box;
   padding: 25px 40px;
-  margin: 0 20px 40px;
+  margin: 10px;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -47,6 +46,12 @@ const StyledWrapper = styled.div`
     `}
 `;
 
+const StyledEstate = styled.div`
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledTitle = styled.h2`
   font-weight: 700;
   font-size: 24px;
@@ -65,7 +70,6 @@ const StyledIcons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 15px 0;
 `;
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
@@ -100,7 +104,7 @@ class EstateItem extends Component {
       price,
       type,
       description,
-      editActive: true,
+      editActive: !this.state.editActive,
     });
   };
 
@@ -123,39 +127,41 @@ class EstateItem extends Component {
 
     return (
       <EstateContext.Provider value={contextElements}>
-        <StyledItem id={id}>
-          <StyledWrapper>
-            <div>
-              <StyledTitle>{city}</StyledTitle>
-              <StyledSubtitle>
-                {street}
-                {` ${property}`}/{apartment}
-              </StyledSubtitle>
-            </div>
-            <div>
-              <StyledIcons>
-                <StyledFontAwesomeIcon icon={faHandHoldingUsd} />
-                {`${price}`}
-              </StyledIcons>
-              <StyledIcons>
-                <StyledFontAwesomeIcon icon={faList} />
-                {`${type}`}
-              </StyledIcons>
-            </div>
-          </StyledWrapper>
-          <StyledDescription>{description}</StyledDescription>
-          <StyledWrapper secondary>
-            <Button onClick={() => removeItem(id)}>Usuń</Button>
-            <Button
-              onClick={() =>
-                this.handleEdit(id, city, street, property, apartment, price, type, description)
-              }
-            >
-              Edytuj
-            </Button>
-          </StyledWrapper>
-        </StyledItem>
-        {this.state.editActive && <EditForm />}
+        <StyledEstate>
+          <StyledItem id={id}>
+            <StyledWrapper>
+              <div>
+                <StyledTitle>{city}</StyledTitle>
+                <StyledSubtitle>
+                  {street}
+                  {` ${property}`}/{apartment}
+                </StyledSubtitle>
+              </div>
+              <div>
+                <StyledIcons>
+                  <StyledFontAwesomeIcon icon={faHandHoldingUsd} />
+                  {`${price}`}
+                </StyledIcons>
+                <StyledIcons>
+                  <StyledFontAwesomeIcon icon={faList} />
+                  {`${type}`}
+                </StyledIcons>
+              </div>
+            </StyledWrapper>
+            <StyledDescription>{description}</StyledDescription>
+            <StyledWrapper secondary>
+              <Button onClick={() => removeItem(id)}>Usuń</Button>
+              <Button
+                onClick={() =>
+                  this.handleEdit(id, city, street, property, apartment, price, type, description)
+                }
+              >
+                {this.state.editActive ? `Zamknij` : `Edytuj`}
+              </Button>
+            </StyledWrapper>
+          </StyledItem>
+          {this.state.editActive && <EditForm />}
+        </StyledEstate>
       </EstateContext.Provider>
     );
   }

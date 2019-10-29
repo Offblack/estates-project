@@ -1,15 +1,19 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Roboto', sans-serif;
   font-size: 11px;
-  box-sizing: border-box;
-  padding: 12px 53px 11px;
+  padding: 11px 53px;
+  max-width: 155px;
   margin: 10px;
   color: #fff;
   background-color: #00ab58;
   letter-spacing: 0.15em;
   line-height: 2em;
+  text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   border: none;

@@ -7,7 +7,20 @@ import { connect } from 'react-redux';
 import { editItem as editItemAction } from 'src/actions';
 import EstateContext from 'src/context';
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      top: 35px;
+    }
+    100% {
+      opacity: 1;
+      top: 0;
+    }
+  }
+
+  animation: appear 0.6s ease-in-out;
+`;
 
 const StyledForm = styled.form`
   padding: 0;
@@ -44,7 +57,6 @@ const EditForm = ({ editItem }) => (
             description: contextElements.description,
           }}
           onSubmit={(values, actions) => {
-            console.log(values);
             editItem(values);
             actions.setSubmitting(false);
             actions.resetForm();

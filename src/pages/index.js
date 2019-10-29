@@ -4,6 +4,7 @@ import GlobalStyles from 'src/theme/GlobalStyles';
 import AddForm from 'src/components/AddForm';
 import EstatesList from 'src/components/EstatesList';
 import MainTemplate from 'src/templates/MainTemplate';
+import StyledHeader from 'src/components/Header';
 import store from 'src/store';
 import { Provider } from 'react-redux';
 
@@ -19,6 +20,7 @@ const IndexPage = () => (
   <Provider store={store}>
     <MainTemplate>
       <GlobalStyles />
+      <StyledHeader>Oferty Nieruchomości</StyledHeader>
       <Helmet title="Estates" defer={false} />
       <AddForm />
       <EstatesList />

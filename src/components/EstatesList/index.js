@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 import { getItems as getItemsAction } from 'src/actions';
 
 const StyledList = styled.ul`
-  max-width: 1000px;
+  max-width: 1100px;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: center;
   list-style-type: none;
 `;
 
@@ -22,21 +22,24 @@ class EstatesList extends Component {
     const { data } = this.props;
 
     return (
-      <StyledList>
-        {data.map(estate => (
-          <EstateItem
-            id={estate.id}
-            city={estate.city}
-            street={estate.street}
-            property={estate.property}
-            apartment={estate.apartment}
-            price={estate.price}
-            type={estate.type}
-            description={estate.description}
-            key={estate.id}
-          />
-        ))}
-      </StyledList>
+      <>
+        <h2>Aktualne oferty</h2>
+        <StyledList>
+          {data.map(estate => (
+            <EstateItem
+              id={estate.id}
+              city={estate.city}
+              street={estate.street}
+              property={estate.property}
+              apartment={estate.apartment}
+              price={estate.price}
+              type={estate.type}
+              description={estate.description}
+              key={estate.id}
+            />
+          ))}
+        </StyledList>
+      </>
     );
   }
 }
