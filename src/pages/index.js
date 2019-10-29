@@ -10,9 +10,8 @@ import { Provider } from 'react-redux';
 
 /* To do! 
 
-1. Dont forget about PropTypes
-2. Add MainTheme with fontSize and Colors
-3. Add sematnic tags
+1. Add sematnic tags
+2. Add RWD
 
 */
 

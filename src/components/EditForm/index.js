@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { editItem as editItemAction } from 'src/actions';
 import EstateContext from 'src/context';
+import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
   @keyframes appear {
@@ -124,6 +125,7 @@ const EditForm = ({ editItem, handleFormFn }) => (
                 short
               />
               <Input
+                type="text"
                 as={StyledTextArea}
                 name="description"
                 onChange={handleChange}
@@ -142,6 +144,11 @@ const EditForm = ({ editItem, handleFormFn }) => (
     )}
   </EstateContext.Consumer>
 );
+
+EditForm.propTypes = {
+  editItem: PropTypes.func.isRequired,
+  handleFormFn: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   editItem: values => dispatch(editItemAction(values)),

@@ -5,6 +5,7 @@ import Button from 'src/components/Button';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'src/actions';
+import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div``;
 
@@ -106,6 +107,7 @@ const AddForm = ({ addItem }) => (
             short
           />
           <Input
+            type="text"
             as={StyledTextArea}
             name="description"
             onChange={handleChange}
@@ -122,6 +124,10 @@ const AddForm = ({ addItem }) => (
     </Formik>
   </StyledWrapper>
 );
+
+AddForm.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   addItem: values => dispatch(addItemAction(values)),

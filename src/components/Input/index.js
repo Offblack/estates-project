@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
   width: 90%;
@@ -63,5 +64,11 @@ const Input = ({ type, name, label, short, ...props }) => (
     <StyledBar />
   </StyledWrapper>
 );
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 export default Input;
