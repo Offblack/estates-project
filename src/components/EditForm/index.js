@@ -40,7 +40,7 @@ const StyledTextArea = styled.textarea`
   height: 100px;
 `;
 
-const EditForm = ({ editItem }) => (
+const EditForm = ({ editItem, handleFormFn }) => (
   <EstateContext.Consumer>
     {contextElements => (
       <StyledWrapper>
@@ -60,6 +60,7 @@ const EditForm = ({ editItem }) => (
             editItem(values);
             actions.setSubmitting(false);
             actions.resetForm();
+            handleFormFn();
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (

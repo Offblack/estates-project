@@ -108,6 +108,12 @@ class EstateItem extends Component {
     });
   };
 
+  handleForm = () => {
+    this.setState({
+      editActive: !this.state.editActive,
+    });
+  };
+
   render() {
     const {
       id,
@@ -160,7 +166,7 @@ class EstateItem extends Component {
               </Button>
             </StyledWrapper>
           </StyledItem>
-          {this.state.editActive && <EditForm />}
+          {this.state.editActive && <EditForm handleFormFn={this.handleForm} />}
         </StyledEstate>
       </EstateContext.Provider>
     );
