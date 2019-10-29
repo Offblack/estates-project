@@ -9,14 +9,24 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const StyledList = styled.ul`
   max-width: 1100px;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   list-style-type: none;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 class EstatesList extends Component {

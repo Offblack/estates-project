@@ -7,7 +7,27 @@ import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'src/actions';
 import PropTypes from 'prop-types';
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      top: 35px;
+    }
+    100% {
+      opacity: 1;
+      top: 0;
+    }
+  }
+  position: relative;
+  animation: appear 0.6s ease-in-out;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+  }
+`;
 
 const StyledForm = styled.form`
   padding: 0;
@@ -16,10 +36,18 @@ const StyledForm = styled.form`
   justify-content: space-around;
   flex-wrap: wrap;
   max-width: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const StyledHeader = styled.h2`
   margin-left: 20px;
+
+  @media (max-width: 468px) {
+    margin-left: 0;
+  }
 `;
 
 const StyledTextArea = styled.textarea`

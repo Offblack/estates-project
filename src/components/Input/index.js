@@ -27,6 +27,10 @@ const StyledLabel = styled.label`
   left: 0;
   transition: 0.2s ease-out all;
   font-size: 16px;
+
+  @media (max-width: 468px) {
+    font-size: 11px;
+  }
 `;
 
 const StyledInput = styled.input`

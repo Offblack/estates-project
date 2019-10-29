@@ -8,7 +8,7 @@ import { removeItem as removeItemAction } from 'src/actions';
 import EstateContext from 'src/context';
 import EditForm from 'src/components/EditForm';
 
-const StyledItem = styled.li`
+const StyledItem = styled.div`
   @keyframes appear {
     0% {
       opacity: 0;
@@ -29,6 +29,12 @@ const StyledItem = styled.li`
   align-items: center;
   box-shadow: 0px 0px 35px -10px rgba(0, 0, 0, 0.3);
   animation: appear 0.5s ease;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 10px 0;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -42,14 +48,23 @@ const StyledWrapper = styled.div`
   ${props =>
     props.secondary &&
     css`
-      justify-content: flex-end;
+      @media (max-width: 468px) {
+        flex-direction: column;
+      }
     `}
 `;
 
-const StyledEstate = styled.div`
+const StyledEstate = styled.li`
+  margin: 0;
+  padding: 0;
   max-width: 440px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const StyledTitle = styled.h2`
@@ -57,6 +72,10 @@ const StyledTitle = styled.h2`
   font-size: 24px;
   padding: 0;
   margin: 10px 0;
+
+  @media (max-width: 468px) {
+    font-size: 18px;
+  }
 `;
 
 const StyledSubtitle = styled.h3`
@@ -64,6 +83,10 @@ const StyledSubtitle = styled.h3`
   font-size: 18px;
   padding: 0;
   margin: 5px 0;
+
+  @media (max-width: 468px) {
+    font-size: 16px;
+  }
 `;
 
 const StyledIcons = styled.div`

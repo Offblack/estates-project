@@ -19,21 +19,35 @@ const StyledWrapper = styled.div`
       top: 0;
     }
   }
-
+  position: relative;
   animation: appear 0.6s ease-in-out;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+  }
 `;
 
 const StyledForm = styled.form`
   padding: 0;
-  margin: 0;
+  margin: 0 0 60px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   max-width: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const StyledHeader = styled.h1`
+const StyledHeader = styled.h2`
   margin-left: 20px;
+  @media (max-width: 468px) {
+    margin-left: 0;
+  }
 `;
 
 const StyledTextArea = styled.textarea`
