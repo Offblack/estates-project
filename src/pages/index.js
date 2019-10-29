@@ -10,20 +10,27 @@ import { Provider } from 'react-redux';
 
 /* To do! 
 
-1. Add sematnic tags
 2. Add RWD
 
 */
 
 const IndexPage = () => (
   <Provider store={store}>
-    <MainTemplate>
-      <GlobalStyles />
-      <StyledHeader>Oferty Nieruchomości</StyledHeader>
-      <Helmet title="Estates" defer={false} />
-      <AddForm />
-      <EstatesList />
-    </MainTemplate>
+    <Helmet title="Estates" defer={false} />
+    <main>
+      <MainTemplate>
+        <GlobalStyles />
+        <header>
+          <StyledHeader>Oferty Nieruchomości</StyledHeader>
+        </header>
+        <section>
+          <AddForm />
+        </section>
+        <section>
+          <EstatesList />
+        </section>
+      </MainTemplate>
+    </main>
   </Provider>
 );
 

@@ -5,6 +5,12 @@ import EstateItem from 'src/components/EstateItem';
 import { connect } from 'react-redux';
 import { getItems as getItemsAction } from 'src/actions';
 
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const StyledList = styled.ul`
   max-width: 1100px;
   display: flex;
@@ -22,7 +28,7 @@ class EstatesList extends Component {
     const { data } = this.props;
 
     return (
-      <>
+      <StyledWrapper>
         <h2>Aktualne oferty</h2>
         <StyledList>
           {data.map(estate => (
@@ -39,7 +45,7 @@ class EstatesList extends Component {
             />
           ))}
         </StyledList>
-      </>
+      </StyledWrapper>
     );
   }
 }
